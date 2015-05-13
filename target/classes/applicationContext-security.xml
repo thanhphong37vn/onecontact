@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+        xmlns:beans="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans
+                http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+                http://www.springframework.org/schema/security
+                http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+
+    <!-- Path is not required security settings -->
+    <http pattern="/admin/login*" security="none" />
+    <http pattern="/admin/logout*" security="none" />
+    <http pattern="/admin/loginfailed*" security="none" />
+
+    <!-- HTTP-Security -->
+    
+    
+    <http auto-config="true" use-expressions="true">
+
+        <!-- Privileges required for each URL -->
+        <intercept-url pattern="/error.html" access="isAuthenticated()" />
+        <intercept-url pattern="/portal.html" access="isAuthenticated()" />
+        <intercept-url pattern="/admin/account/**" access="hasRole('ROLE_ADMIN')" />
+        <intercept-url pattern="/admin/**" access="isAuthenticated()" />
+		<intercept-url pattern="/admin/**" access="isAuthenticated()" />
+        <!-- login page -->
+        <form-login login-page="/admin/login.html" default-target-url="/admin/home.html"  authentication-failure-url="/admin/loginfailed.html" />
+
+        <!-- logout page -->
+        <logout logout-success-url="/admin/logout.html" invalidate-session="true" />
+
+        <!-- session -->
+        <session-management>          
+            <concurrency-control max-sessions="3" expired-url="/admin/login.html" error-if-maximum-exceeded="false" />
+        </session-management>
+    </http>
+
+    <!-- authentication provider -->
+    <beans:bean id="authenticationProvider" class="org.oni.webapp.authentication.AuthenticationProvider" />
+    <authentication-manager>
+        <authentication-provider ref="authenticationProvider" />
+    </authentication-manager>
+
+</beans:beans>
