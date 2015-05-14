@@ -1,0 +1,285 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<!-- TemplateBeginEditable name="doctitle" -->
+<TITLE>Teamplate User Page</TITLE>
+<!-- TemplateEndEditable -->
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<!-- TemplateBeginEditable name="head" --><!-- TemplateEndEditable -->
+
+<!--[if IE]><link/><![endif]-->
+<link rel="stylesheet" type="text/css" href="/onecontact/globalcss/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="/onecontact/globalcss/plugins/metisMenu/metisMenu.min.css" />
+
+<link rel="stylesheet" type="text/css" href="/onecontact/globalcss/plugins/dataTables.min.css" />
+<link rel="stylesheet" type="text/css" href="/onecontact/globalcss/admin.css" />
+<link rel="stylesheet" type="text/css" href="/onecontact/font-awesome-4.1.0/css/font-awesome.min.css" />
+
+
+
+<script type="text/javascript" src="/onecontact/globaljs/jquery-1.11.0.js"></script>
+<script type="text/javascript" src="/onecontact/globaljs/bootstrap.min.js"></script>
+<script type="text/javascript" src="/onecontact/globaljs/plugins/metisMenu/metisMenu.min.js"></script>
+<script type="text/javascript" src="/onecontact/globaljs/plugins/dataTables/jquery.dataTables.js"></script>
+<script type="text/javascript" src="/onecontact/globaljs/plugins/dataTables/dataTables.min.js"></script>
+<script type="text/javascript" src="/onecontact/globaljs/admin.js"></script>
+
+
+
+</head>
+
+<body>
+
+
+
+
+
+<div id="wrapper">
+    
+
+
+
+
+
+
+<nav style="margin-bottom: 0" role="navigation" class="navbar navbar-default navbar-static-top">
+    <div class="navbar-header">
+        <button data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle" type="button">
+            <span class="sr-only">Toggle navigation</span>
+        </button>
+        <a href="index.html" class="navbar-brand">OneContact Management</a>
+    </div>
+    <!-- /.navbar-header -->
+
+	
+
+
+
+
+
+<ul class="nav navbar-top-links navbar-right">
+    
+    <li class="dropdown">
+        <a href="#" data-toggle="dropdown" class="dropdown-toggle">
+            admin <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
+        </a>
+        <ul class="dropdown-menu dropdown-user">
+            <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+            </li>
+            <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+            </li>
+            <li class="divider"></li>
+            <li><a href="/onecontact/j_spring_security_logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+            </li>
+        </ul>
+        <!-- /.dropdown-user -->
+    </li>
+    <!-- /.dropdown -->
+</ul>
+
+	<!-- /.navbar-top-links -->
+
+	
+
+
+
+
+
+
+<div role="navigation" class="navbar-default sidebar">
+	<div class="sidebar-nav navbar-collapse">
+		<ul id="side-menu" class="nav">
+			<li><a href="/onecontact/intro.html"><i
+					class="fa fa-dashboard fa-fw"></i> Home One Contact</a></li>
+			<li>
+				<ul class="nav nav-second-level collapse">
+					<li>&nbsp</li>
+				</ul>
+			</li>
+			<li>
+				<ul class="nav nav-second-level collapse">
+					<li>&nbsp</li>
+				</ul>
+			</li>
+			
+				
+					<li><a href="/onecontact/admin/account/list.html"><i
+							class="fa fa-dashboard fa-fw"></i> Account</a></li>
+					<li>
+						<ul class="nav nav-second-level collapse">
+							<li>&nbsp</li>
+						</ul>
+					</li>
+				
+			
+			<li><a href="/onecontact/admin/news/list.html"><i
+					class="fa fa-edit fa-fw"></i> Tin t?c
+			</a></li>
+			<li>
+				<ul class="nav nav-second-level collapse">
+					<li>&nbsp</li>
+				</ul>
+			</li>
+			<li>
+				<ul class="nav nav-second-level collapse">
+					<li>&nbsp</li>
+				</ul>
+			</li>
+			<li>
+				<ul class="nav nav-second-level collapse">
+					<li>&nbsp</li>
+				</ul>
+			</li>
+			<li><a href="/onecontact/admin/news/intro.html"><i
+					class="fa fa-edit fa-fw"></i> Gi?i thi?u</a>
+			</li>
+			<li><a href="/onecontact/admin/news/guide.html"><i
+					class="fa fa-edit fa-fw"></i> Hu?ng d?n s? d?ng</a>
+			</li>
+			<li><a href="/onecontact/admin/news/contact.html"><i
+					class="fa fa-edit fa-fw"></i> Liên h?</a>
+			</li>
+			<li>
+				<ul class="nav nav-second-level collapse">
+					<li>&nbsp</li>
+				</ul>
+			</li>
+			<li>
+				<ul class="nav nav-second-level collapse">
+					<li>&nbsp</li>
+				</ul>
+			</li>
+			<li><a href="/onecontact/admin/tag/list.html"><i
+					class="fa fa-edit fa-fw"></i> Tag</a>
+			</li>
+		</ul>
+	</div>
+</div>
+			
+	<!-- /.navbar-static-side -->
+
+</nav>
+
+    <div id="page-wrapper">
+    	
+	<div class="row">
+		<div class="col-lg-12">
+		    <h1 class="page-header">Qu?n lý tài kho?n</h1>
+		</div>
+	</div>
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+    
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						
+
+
+
+
+
+
+
+
+
+
+
+
+
+<form id="addForm" action="add.html" method="get">
+
+
+
+
+    
+							<button type="submit" class="btn btn-primary">T?o tài kho?n</button>
+						
+</form>
+
+					</div>
+					<!-- /.panel-heading -->
+					
+	                 <div class="panel-body">
+	                     <div class="table-responsive">
+	                         <table class="table table-striped table-bordered table-hover" id="account-dataTable">
+	                             <thead>
+	                                 <tr>
+	                                 	<th>S? d?ng</th>
+	                                     <th>ID</th>
+	                                     <th>Tên dang nh?p</th>
+	                                     <th>Quy?n</th>
+	                                     <th>th?i di?m t?o</th>
+	                                     <th>&nbsp</th>  
+	                                 </tr>
+	                             </thead>
+	                             <tbody>
+	                             	
+		                                 <tr class="odd gradeX">
+		                                 	<td>1</td>
+		                                     <td>2</td>
+		                                     <td>hoanpv</td>
+		                                     <td>ADMIN</td>
+		                                     <td class="center">2015-03-23 16:13:25.0</td>
+		                                     <td>
+		                                     	<a href="edit-2.html" class="btn btn-outline btn-warning btn-sm">S?a</a>
+		                                     </td>
+		                                 </tr>
+	                                 
+		                                 <tr class="odd gradeX">
+		                                 	<td>1</td>
+		                                     <td>1</td>
+		                                     <td>admin</td>
+		                                     <td>ADMIN</td>
+		                                     <td class="center">2015-03-20 17:03:07.0</td>
+		                                     <td>
+		                                     	<a href="edit-1.html" class="btn btn-outline btn-warning btn-sm">S?a</a>
+		                                     </td>
+		                                 </tr>
+	                                    
+	                             </tbody>
+	                         </table>
+	                   
+	                     <!-- /.table-responsive -->
+	                    
+	                 </div>
+	                 <!-- /.panel-body -->
+				</div>
+			</div>
+		</div>
+		</div>
+	
+    
+    
+	
+
+    </div>    
+
+</div>
+
+<script>
+    $(document).ready(function() {
+        $('#account-dataTable').dataTable({
+        	stateSave: true
+        });
+    });
+    </script>
+</body>
+</html>

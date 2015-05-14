@@ -8,6 +8,7 @@ import java.util.Arrays;
 import org.apache.commons.codec.binary.Base64;
 
 public class Test {
+	@SuppressWarnings("unused")
 	private static Connection ConnectOracle(String computerName, String port,
 			String sID, String userName, String password) {
 		System.out.println("-------- Oracle JDBC Connection Testing ------");

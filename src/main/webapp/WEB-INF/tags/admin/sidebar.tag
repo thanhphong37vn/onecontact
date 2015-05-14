@@ -60,6 +60,12 @@
 			<li><a href="${contextPath}/admin/news/contact.html"><i
 					class="fa fa-edit fa-fw"></i> <spring:message code="admin.contact" /></a>
 			</li>
+			<li><a href="${contextPath}/admin/pass/list.html"><i
+					class="fa fa-edit fa-fw"></i> <spring:message code="admin.pass" /></a>
+			</li>
+			<li><a href="${contextPath}/admin/pass/search.html"><i
+					class="fa fa-edit fa-fw"></i> <spring:message code="admin.pass.search" /></a>
+			</li>
 			<li>
 				<ul class="nav nav-second-level collapse">
 					<li>&nbsp</li>
