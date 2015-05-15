@@ -9,7 +9,53 @@
 <%@ taglib uri="http://java.fckeditor.net" prefix="fck"%>
 <html>
 <head>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+<!-- Optional theme -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 <admin:importstyles />
+<style type="text/css">
+table {
+	table-layout: fixed;
+	width: 100px;
+}
+
+.filterable {
+	margin-top: 15px;
+}
+
+.filterable .panel-heading .pull-right {
+	margin-top: -20px;
+}
+
+/* .filterable .filters input[disabled] { */
+/* 	background-color: transparent; */
+/* 	border: none; */
+/* 	cursor: auto; */
+/* 	box-shadow: none; */
+/* 	padding: 0; */
+/* 	height: auto; */
+/* } */
+.filterable .filters input[disabled]::-webkit-input-placeholder {
+	color: #333;
+}
+
+.filterable .filters input[disabled]::-moz-placeholder {
+	color: #333;
+}
+
+.filterable .filters input[disabled]:-ms-input-placeholder {
+	color: #333;
+}
+</style>
+
 </head>
 
 <body>
@@ -22,101 +68,127 @@
 			</div>
 		</div>
 		<admin:processResult />
-		<c:choose>
-			<c:when test="${employeeCompanyForm.command eq 'search'}">
-				<div class="row">
-					<div class="col-lg-12">
-						<div class="panel panel-default">
-							<div class="panel-heading">
-<%-- 								<admin:form modelAttribute="employeeCompanyForm" method="get" --%>
-<%-- 									action="add.html" id="addForm"> --%>
-<!-- 									<button type="submit" class="btn btn-primary"> -->
-<%-- 										<spring:message code="admin.account.create" /> --%>
-<!-- 									</button> -->
-<%-- 								</admin:form> --%>
-							</div>
-							<!-- /.panel-heading -->
 
-
-<!--   <div class="panel-heading"> -->
-<!--                 <h3 class="panel-title">Users</h3> -->
-<!--                 <div class="pull-right"> -->
-<!--                     <button class="btn btn-default btn-xs btn-filter"><span class="glyphicon glyphicon-filter"></span> Filter</button> -->
-<!--                 </div> -->
-<!--             </div> -->
-<!--             <table class="table"> -->
-<!--                 <thead> -->
-<!--                     <tr class="filters"> -->
-<!--                         <th><input type="text" class="form-control" placeholder="#" disabled></th> -->
-<!--                         <th><input type="text" class="form-control" placeholder="First Name" disabled></th> -->
-<!--                         <th><input type="text" class="form-control" placeholder="Last Name" disabled></th> -->
-<!--                         <th><input type="text" class="form-control" placeholder="Username" disabled></th> -->
-<!--                     </tr> -->
-<!--                 </thead> -->
-<!--                 </table> -->
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="panel panel-default">
+					<div class="container">
+						<!-- /.panel-heading -->
+						<div class="row">
 							<div class="panel-body">
-								<div class="table-responsive">
-									<table class="table table-striped table-bordered table-hover"
-										id="account-dataTable">
+								<div class="panel panel-primary filterable">
+									<div class="panel-heading">
+										<h3 class="panel-title">Users</h3>
+										<br />
+										<!-- 										<div class="pull-left"> -->
+										<button class="btn btn-default btn-xs btn-filter">
+											<span class="glyphicon glyphicon-filter">Filter</span>
+										</button>
+										<!-- 										</div> -->
+									</div>
+									<table class="table">
 										<thead>
-											<tr>
-											
-											<spring:message code="pass.employee.employeeName" var ="varemployeeName"/>
-											<spring:message code="pass.employee.employeeNo" var ="varEmployeeNo"/>
-											<spring:message code="pass.employee.employeePwd" var ="varEmployeePwd"/>
-											<spring:message code="pass.employee.employeeStatus" var ="varEmployeeStatus"/>
-											<spring:message code="pass.employee.mobilePhone" var ="varMobilePhone"/>
-											<spring:message code="pass.employee.regDateEmp" var ="varRegDateEmp"/>
-											<spring:message code="pass.employee.unregDateEmp" var ="varUnregDateEmp"/>
-											
-											<spring:message code="pass.company.companyName" var ="varCompanyName"/>
-											<spring:message code="pass.company.companyMobile" var ="varCompanyMobile"/>
-											<spring:message code="pass.company.companyPwd" var ="varCompanyPwd"/>
-											<spring:message code="pass.company.companyStatus" var ="varCompanyStatus"/>
-											<spring:message code="pass.company.regDateComp" var ="varRegDateComp"/>
-											<spring:message code="pass.company.unregDateComp" var ="varUnregDateComp"/>
+											<tr class="filters">
+												<spring:message code="pass.employee.employeeName"
+													var="varemployeeName" />
+												<spring:message code="pass.employee.employeeNo"
+													var="varEmployeeNo" />
+												<spring:message code="pass.employee.employeePwd"
+													var="varEmployeePwd" />
+												<spring:message code="pass.employee.employeeStatus"
+													var="varEmployeeStatus" />
+												<spring:message code="pass.employee.mobilePhone"
+													var="varMobilePhone" />
+												<spring:message code="pass.employee.regDateEmp"
+													var="varRegDateEmp" />
+												<spring:message code="pass.employee.unregDateEmp"
+													var="varUnregDateEmp" />
 
+												<spring:message code="pass.company.companyName"
+													var="varCompanyName" />
+												<spring:message code="pass.company.companyMobile"
+													var="varCompanyMobile" />
+												<spring:message code="pass.company.companyPwd"
+													var="varCompanyPwd" />
+												<spring:message code="pass.company.companyStatus"
+													var="varCompanyStatus" />
+												<spring:message code="pass.company.regDateComp"
+													var="varRegDateComp" />
+												<spring:message code="pass.company.unregDateComp"
+													var="varUnregDateComp" />
 
-											<th><input type="text" class="form-control" placeholder="${varemployeeName}" ></th>
-											<th><input type="text" class="form-control" placeholder="${varEmployeeNo}"></th>
-											<th><input type="text" class="form-control" placeholder="${varEmployeePwd}"></th>
-											<th><input type="text" class="form-control" placeholder="${varEmployeeStatus}"></th>
-											<th><input type="text" class="form-control" placeholder="${varMobilePhone}"></th>
-											<th><input type="text" class="form-control" placeholder="${varRegDateEmp}"></th>
-											<th><input type="text" class="form-control" placeholder="${varUnregDateEmp}"></th>
-											
-											<th><input type="text" class="form-control" placeholder="${varCompanyName}"></th>
-											<th><input type="text" class="form-control" placeholder="${varCompanyMobile}"></th>
-											<th><input type="text" class="form-control" placeholder="${varCompanyPwd}"></th>
-											<th><input type="text" class="form-control" placeholder="${varCompanyStatus}"></th>
-											<th><input type="text" class="form-control" placeholder="${varRegDateComp}"></th>
-											<th><input type="text" class="form-control" placeholder="${varUnregDateComp}"></th>
-											<th>&nbsp</th>
+												<th><input type="text" class="form-control"
+													placeholder="#"></th>
+												<th><input type="text" class="form-control"
+													placeholder="${varemployeeName}"></th>
+												<th><input type="text" class="form-control"
+													placeholder="${varMobilePhone}"></th>
+												<th><input type="text" class="form-control"
+													placeholder="${varEmployeePwd}"></th>
+												<th><input type="text" class="form-control"
+													placeholder="${varEmployeeNo}"></th>
+												<th><input type="text" class="form-control"
+													placeholder="${varEmployeeStatus}"></th>
+
+												<!-- 											<th><input type="text" class="form-control" -->
+												<%-- 												placeholder="${varRegDateEmp}"></th> --%>
+												<!-- 											<th><input type="text" class="form-control" -->
+												<%-- 												placeholder="${varUnregDateEmp}"></th> --%>
+
+												<th><input type="text" class="form-control"
+													placeholder="${varCompanyName}"></th>
+												<th><input type="text" class="form-control"
+													placeholder="${varCompanyMobile}"></th>
+												<th><input type="text" class="form-control"
+													placeholder="${varCompanyPwd}"></th>
+												<th><input type="text" class="form-control"
+													placeholder="${varCompanyStatus}"></th>
+												<!-- 											<th><input type="text" class="form-control" -->
+												<%-- 												placeholder="${varRegDateComp}"></th> --%>
+												<!-- 											<th><input type="text" class="form-control" -->
+												<%-- 												placeholder="${varUnregDateComp}"></th> --%>
+												<!-- 											<th>&nbsp</th> -->
 											</tr>
 										</thead>
 										<tbody>
-											<c:forEach items="${listDto.items}" var="entity">
-												<tr class="odd gradeX">
-													<td>${entity.employeeId}</td>
-													<td>${entity.employeeName }</td>
-													<td>${entity.employeeNo}</td>
-													<td>${entity.employeePwd}</td>
-													<td>${entity.employeeStatus}</td>
-													<td>${entity.mobilePhone}</td>
-													<td>${entity.regDateEmp}</td>
-													<td>${entity.unregDateEmp}</td>
+											<%-- 								<c:out value="${listDto.size}"></c:out> --%>
+											<c:if test="${not empty listDto}">
+												<c:forEach items="${listDto}" var="entity" varStatus="index">
+													<tr class="odd gradeX">
+														<!-- 													<tr> -->
+														<td><c:out value="${index.count}" /></td>
+														<td><c:out value="${entity.employeeName }" /></td>
+														<td><c:out value="${entity.mobilePhone}" /></td>
+														<td><c:out value="${entity.employeePwd}" /></td>
+														<td><c:out value="${entity.employeeNo}" /></td>
+														<td><c:if test="${entity.employeeStatus==1}">
+																<c:out value="On" />
+															</c:if> <c:if test="${entity.employeeStatus!=1}">
+																<c:out value="Off" />
+															</c:if></td>
 
-													<td>${entity.companyName}</td>
-													<td>${entity.companyMobile}</td>
-													<td>${entity.companyPwd}</td>
-													<td>${entity.companyStatus}</td>
-													<td class="center">${entity.regDateComp}</td>
-													<td class="center">${entity.unregDateComp}</td>
-													<td><a href="edit-${entity.employeeId}.html"
-														class="btn btn-outline btn-warning btn-sm"><spring:message
-																code="admin.account.edit" /></a></td>
-												</tr>
-											</c:forEach>
+														<%-- 													<td><c:out value="${entity.regDateEmp}" /></td> --%>
+														<%-- 													<td><c:out value="${entity.unregDateEmp}" /></td> --%>
+
+														<td><c:out value="${entity.companyName}" /></td>
+														<td><c:out value="${entity.companyMobile}" /></td>
+														<td><c:out value="${entity.companyPwd}" /></td>
+														<td><c:if test="${entity.companyStatus==1}">
+																<c:out value="On" />
+															</c:if> <c:if test="${entity.companyStatus!=1}">
+																<c:out value="Off" />
+															</c:if></td>
+														<%-- 													<td class="center"><c:out --%>
+														<%-- 															value="${entity.regDateComp}" /></td> --%>
+														<%-- 													<td class="center"><c:out --%>
+														<%-- 															value="${entity.unregDateComp}" /></td> --%>
+														<!-- 														<td><a -->
+														<%-- 															href="edit-<c:out value='${entity.employeeId}' />.html" --%>
+														<%-- 															class="btn btn-outline btn-warning btn-sm"><spring:message --%>
+														<%-- 																	code="admin.account.edit" /></a></td> --%>
+													</tr>
+												</c:forEach>
+											</c:if>
 										</tbody>
 									</table>
 
@@ -125,83 +197,88 @@
 								</div>
 								<!-- /.panel-body -->
 							</div>
+
 						</div>
 					</div>
 				</div>
-			</c:when>
-			<%--     <c:when test="${(accountForm.command eq 'add') || (accountForm.command eq 'edit')}"> --%>
-			<%--     	<c:choose> --%>
-			<%--     	<c:when test="${accountForm.command eq 'edit'}"> --%>
-			<%--         	<c:set var="usernameDisable" value="true"/> --%>
-			<%--         </c:when> --%>
-			<%--         <c:otherwise> --%>
-			<%--         	<c:set var="usernameDisable" value="false"/> --%>
-			<%--         </c:otherwise> --%>
-			<%--         </c:choose> --%>
-			<!--         <div class="row"> -->
-			<!--         <div class="col-lg-12"> -->
-			<!--             <div class="panel panel-default"> -->
-			<!--                 <div class="panel-heading"> -->
-			<%--                     <spring:message code="admin.account.input"/> --%>
-			<!--                 </div> -->
-			<!--                 <div class="panel-body"> -->
-			<!--                     <div class="row"> -->
-			<!--                         <div class="col-lg-6"> -->
+			</div>
+		</div>
 
-			<%--                         	<admin:form modelAttribute ="accountForm" method = "post" enctype="multipart/form-data" action="register.html" id="do-addForm"> --%>
-			<%--                         		<form:errors path="*" cssClass="error" element="div"/> --%>
-			<%--                         		<form:hidden path="id"/> --%>
-			<%--                         		<form:hidden path="command"/> --%>
-			<!--                         		<div class="form-group"> -->
-			<%--                                     <label><spring:message code="admin.account.username" /></label> --%>
-			<%--                                     <spring:message code="admin.account.username.input" var="intputUsername"/> --%>
-			<%--                                     <c:choose> --%>
-			<%-- 								    	<c:when test="${accountForm.command eq 'edit'}"> --%>
-			<%-- 								        	<form:hidden path="username"/> --%>
-			<%-- 								        	<input type="text" class="form-control"  value="${accountForm.username}" disabled="disabled"/> --%>
-			<%-- 								        </c:when> --%>
-			<%-- 								        <c:otherwise> --%>
-			<%-- 								        	<form:input path = "username" class="form-control" placeholder="${intputUsername }"/>   --%>
-			<%-- 								        </c:otherwise> --%>
-			<%-- 							        </c:choose> --%>
-			<!--                                 </div> -->
-			<!--                                 <div class="form-group"> -->
-			<%--                                     <label><spring:message code="admin.account.password" /></label> --%>
-			<%--                                     <spring:message code="admin.account.password.input" var="intputPassword"/> --%>
-			<%--                                     <form:input path = "password" class="form-control" placeholder="${intputPassword }"/> --%>
-			<!--                                 </div> -->
-
-			<!--                                  <div class="form-group"> -->
-			<%--                                     <label><spring:message code="admin.account.role" /></label>           --%>
-			<%--                                     <form:select path="role" class="form-control"> --%>
-			<%-- <%-- 									   <form:option value="USER" label="User"/> --%> --%>
-<%-- <%-- 									   <form:option value="ADMIN" label="Admin"/> --%> --%>
-<%-- 									   <form:options items="${roleList}" /> --%>
-			<%-- 									</form:select> --%>
-			<!--                                 </div> -->
-			<!-- 								<div class="form-group"> -->
-			<%--                                 	<label><spring:message code="admin.account.enable" /><form:checkbox path = "active" class="form-control" /></label> --%>
-			<!--                                 </div> -->
-			<%--                                 <button type="submit" class="btn btn-default"><spring:message code="admin.account.save"/></button> --%>
-			<%--                                 <a href="list.html" class="btn btn-default"><spring:message code="admin.account.list"/></a>                                 --%>
-			<%--                         	</admin:form> --%>
-			<!--                         </div> -->
-			<!--                     </div> -->
-			<!--                 </div> -->
-			<!--            </div> -->
-			<!--        	</div> -->
-			<!--     	</div> -->
-			<%--     </c:when> --%>
-			<c:otherwise>
-			</c:otherwise>
-		</c:choose>
 	</admin:wrapper>
-	<script>
-		$(document).ready(function() {
-			$('#account-dataTable').dataTable({
-				stateSave : true
-			});
-		});
+
+	<script type="text/javascript">
+		$(document)
+				.ready(
+						function() {
+							// 							$('#account-dataTable').dataTable({
+							// 								stateSave : true
+							// 							});
+							$('.filterable .btn-filter')
+									.click(
+											function() {
+												var $panel = $(this).parents(
+														'.filterable'), $filters = $panel
+														.find('.filters input'), $tbody = $panel
+														.find('.table tbody');
+												if ($filters.prop('disabled') == true) {
+													$filters.prop('disabled',
+															false);
+													$filters.first().focus();
+												} else {
+													$filters.val('').prop(
+															'disabled', true);
+													$tbody.find('.no-result')
+															.remove();
+													$tbody.find('tr').show();
+												}
+											});
+
+							$('.filterable .filters input')
+									.keyup(
+											function(e) {
+												/* Ignore tab key */
+												var code = e.keyCode || e.which;
+												if (code == '9')
+													return;
+												/* Useful DOM data and selectors */
+												var $input = $(this), inputContent = $input
+														.val().toLowerCase(), $panel = $input
+														.parents('.filterable'), column = $panel
+														.find('.filters th')
+														.index(
+																$input
+																		.parents('th')), $table = $panel
+														.find('.table'), $rows = $table
+														.find('tbody tr');
+												/* Dirtiest filter function ever ;) */
+												var $filteredRows = $rows
+														.filter(function() {
+															var value = $(this)
+																	.find('td')
+																	.eq(column)
+																	.text()
+																	.toLowerCase();
+															return value
+																	.indexOf(inputContent) === -1;
+														});
+												/* Clean previous no-result if exist */
+												$table.find('tbody .no-result')
+														.remove();
+												/* Show all rows, hide filtered ones (never do that outside of a demo ! xD) */
+												$rows.show();
+												$filteredRows.hide();
+												/* Prepend no-result row if all rows are filtered */
+												if ($filteredRows.length === $rows.length) {
+													$table
+															.find('tbody')
+															.prepend(
+																	$('<tr class="no-result text-center"><td colspan="'
+																			+ $table
+																					.find('.filters th').length
+																			+ '">No result found</td></tr>'));
+												}
+											});
+						});
 	</script>
 </body>
 </html>

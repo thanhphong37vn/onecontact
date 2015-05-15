@@ -1,13 +1,19 @@
 package org.oni.webapp.controller;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.SessionFactory;
+import org.hibernate.classic.Session;
 import org.oni.webapp.bean.EmployeeCompanyBean;
 import org.oni.webapp.components.FileUploadHelper;
 import org.oni.webapp.components.HttpSessionAccessor;
 import org.oni.webapp.controller.abstracts.AbstractController;
 import org.oni.webapp.dao.entity.News;
-import org.oni.webapp.dao.impl.EmployeeCompanyBeanImpl;
 import org.oni.webapp.dto.ListDto;
 import org.oni.webapp.enumeration.NewsType;
 import org.oni.webapp.form.EmployeeCompanyForm;
@@ -39,6 +45,8 @@ public class PassController extends AbstractController {
 
 	// @Autowired
 	// private HttpSessionAccessor sessionAccessor;
+	@Autowired
+	private SessionFactory sessionFactory;
 
 	/**
 	 * display the list account screen.
@@ -52,21 +60,110 @@ public class PassController extends AbstractController {
 	@RequestMapping(value = "search", method = RequestMethod.GET)
 	public String list(EmployeeCompanyForm formEcmp, ModelMap modelMap) {
 
-		// String employeeName = formEcmp.getEmployeeName();
-		// String employeeNo = formEcmp.getEmployeeNo();
-		// String mobilePhone = formEcmp.getMobilePhone();
-		// String companyMobile = formEcmp.getCompanyMobile();
-		// String companyName = formEcmp.getCompanyName();
 
-		EmployeeCompanyBeanImpl beanImpl = new EmployeeCompanyBeanImpl();
-		List<EmployeeCompanyBean> list = beanImpl.getResultListAll();
-		// List<EmployeeCompanyBean> list = beanImpl.getResultList(employeeName,
-		// employeeNo, mobilePhone, companyMobile, companyName);
+//		 EmployeeCompanyBeanImpl beanImpl = new EmployeeCompanyBeanImpl();
+		List<EmployeeCompanyBean> list = getResultListAll();
+//		 List<EmployeeCompanyBean> list = beanImpl.getResultList(employeeName,
+//		 employeeNo, mobilePhone, companyMobile, companyName);
+		int size = list.size();
+		System.out.println("So luong record:" + size);
+
 		ListDto<EmployeeCompanyBean> listDto = new ListDto<EmployeeCompanyBean>(
-				list, list.size());
+				list, size);
 		formEcmp.setCommand("search");
-		modelMap.addAttribute("listDto", listDto);
+		modelMap.addAttribute("listDto", list);
+		System.out.println("Redirect sang pass Page");
 		return "admin/Pass";
+
+	}
+
+	public List<EmployeeCompanyBean> getResultListAll() {
+		Session session = sessionFactory.openSession();
+		Connection connection = session.connection();
+
+		List<EmployeeCompanyBean> list = new ArrayList<EmployeeCompanyBean>();
+		PreparedStatement prpStm = null;
+		ResultSet rs = null;
+		StringBuilder qBuilder = new StringBuilder();
+		try {
+			System.out.println("Trang thai dong connection : "
+					+ connection.isClosed());
+			qBuilder.append("select * from TAB_XN_EMPLOYEE E inner join TAB_XN_COMPANY C on C.COMPANY_ID= E.COMPANY_ID");
+			// TODO Auto-generated method stub
+			prpStm = connection.prepareStatement(qBuilder.toString());
+			System.out.println(qBuilder.toString());
+
+			rs = prpStm.executeQuery();
+
+			if (rs != null) {
+				while (rs.next()) {
+					EmployeeCompanyBean ecb = new EmployeeCompanyBean();
+					// private String employeeName;
+					ecb.setEmployeeName(rs.getString("EMPLOYEE_NAME"));
+					// private String setEmployeeNo;
+					ecb.setEmployeeNo(rs.getString("EMPLOYEE_NO"));
+					// private String setEmployeePwd;
+					ecb.setEmployeePwd(rs.getString("EMPLOYEE_PWD"));
+					// private int employeeStatus;
+					ecb.setEmployeeStatus(Integer.parseInt(rs
+							.getLong("EMPLOYEE_STATUS") + ""));
+					// private String mobilePhone;
+					ecb.setMobilePhone(rs.getString("MOBILE_PHONE"));
+					// private Date setRegDateEmp;
+					// ecb.setRegDateEmp(rs.getDate("E.REG_DATE"));
+					// private Date setUnregDateEmp;
+					// ecb.setUnregDateEmp(rs.getDate("E.UNREG_DATE"));
+					// /**
+					// * Company
+					// */
+					// private BigDecimal companyId;
+					ecb.setAddress(rs.getString("ADDRESS"));
+					// private String setAddress;
+					ecb.setCompanyName(rs.getString("COMPANY_NAME"));
+					// private String setCompanyMobile;
+					ecb.setCompanyMobile(rs.getString("COMPANY_MOBILE"));
+					// private String setCompanyName;
+					ecb.setCompanyName(rs.getString("COMPANY_NAME"));
+					// private String setCompanyPwd;
+					ecb.setCompanyPwd(rs.getString("COMPANY_PWD"));
+					// private int setCompanyStatus;
+					 ecb.setEmployeeStatus(Integer.parseInt(rs
+					 .getLong("COMPANY_STATUS") + ""));
+					// private String setContactMobile;
+					ecb.setContactMobile(rs.getString("CONTACT_MOBILE"));
+					// private String setContactName;
+					ecb.setContactName(rs.getString("CONTACT_NAME"));
+					// private String setContactPhone;
+					ecb.setContactPhone(rs.getString("CONTACT_PHONE"));
+					// private Date setRegDateComp;
+					// ecb.setRegDateComp(rs.getDate("C.REG_DATE"));
+					// private Date setUnregDateComp;
+					// ecb.setUnregDateComp(rs.getDate("C.UNREG_DATE"));
+					list.add(ecb);
+				}
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (prpStm != null) {
+					prpStm.close();
+				}
+				if (connection != null) {
+					connection.close();
+				}
+				if (session != null) {
+					session.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return list;
 	}
 
 	/** View name */

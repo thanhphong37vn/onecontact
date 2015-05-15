@@ -36,8 +36,7 @@ public class EmployeeCompanyBeanImpl implements EmployeeCompanyBeanDao {
 		ResultSet rs = null;
 		StringBuilder qBuilder = new StringBuilder();
 		try {
-			qBuilder.append("select * from TAB_XN_COMPANY C inner join TAB_XN_EMPLOYEE E "
-					+ "on C.companyId=E.companyId where ");
+			qBuilder.append("select * from TAB_XN_EMPLOYEE E inner join TAB_XN_COMPANY C on C.COMPANY_ID= E.COMPANY_ID where ");
 			// TODO Auto-generated method stub
 			if (!employeeName.trim().isEmpty()) {
 				qBuilder.append("and  EMPLOYEE_NAME like '%" + employeeName
@@ -73,7 +72,7 @@ public class EmployeeCompanyBeanImpl implements EmployeeCompanyBeanDao {
 					ecb.setEmployeeStatus(Integer.parseInt(rs
 							.getLong("EMPLOYEE_STATUS") + ""));
 					// private String mobilePhone;
-					ecb.setContactMobile(rs.getString("MOBILE_PHONE"));
+					ecb.setMobilePhone(rs.getString("MOBILE_PHONE"));
 					// private Date setRegDateEmp;
 					ecb.setRegDateEmp(rs.getDate("E.REG_DATE"));
 					// private Date setUnregDateEmp;
@@ -128,25 +127,22 @@ public class EmployeeCompanyBeanImpl implements EmployeeCompanyBeanDao {
 		return list;
 	}
 
+	@SuppressWarnings("deprecation")
 	public List<EmployeeCompanyBean> getResultListAll() {
-		Session session = sessionFactory.openSession();
-		@SuppressWarnings("deprecation")
+		Session session = sessionFactory.getCurrentSession();
 		Connection connection = session.connection();
 		List<EmployeeCompanyBean> list = new ArrayList<EmployeeCompanyBean>();
 		PreparedStatement prpStm = null;
 		ResultSet rs = null;
 		StringBuilder qBuilder = new StringBuilder();
 		try {
-			qBuilder.append("select * from TAB_XN_COMPANY C inner join TAB_XN_EMPLOYEE E "
-					+ "on C.companyId=E.companyId where ");
+			qBuilder.append("select * from TAB_XN_EMPLOYEE E inner join TAB_XN_COMPANY C on C.COMPANY_ID= E.COMPANY_ID");
 			// TODO Auto-generated method stub
 			prpStm = connection.prepareStatement(qBuilder.toString());
 			System.out.println(qBuilder.toString());
 
 			rs = prpStm.executeQuery();
-			if (rs == null) {
-				return null;
-			} else {
+			if (rs != null) {
 				while (rs.next()) {
 					EmployeeCompanyBean ecb = new EmployeeCompanyBean();
 					// private String employeeName;
@@ -212,21 +208,6 @@ public class EmployeeCompanyBeanImpl implements EmployeeCompanyBeanDao {
 			}
 		}
 		return list;
-	}
-
-	/**
-	 * @return the sessionFactory
-	 */
-	public SessionFactory getSessionFactory() {
-		return sessionFactory;
-	}
-
-	/**
-	 * @param sessionFactory
-	 *            the sessionFactory to set
-	 */
-	public void setSessionFactory(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
 	}
 
 	public static void main(String[] args) {
