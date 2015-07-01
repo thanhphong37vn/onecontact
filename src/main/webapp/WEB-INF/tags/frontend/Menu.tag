@@ -1,61 +1,49 @@
-<%@ tag language="java" pageEncoding="UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ tag language="java" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<div class="navbar-header">
-	<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-		<span class="sr-only">Toggle navigation</span>
-		<i class="fa fa-bars"></i>
-	</button>
-	<a href="#" class="navbar-brand hidden-lg hidden-md hidden-sm active" style="width:300px"></a>
-</div> <!-- navbar-header -->
-<!-- Collect the nav links, forms, and other content for toggling -->
-<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-	<ul id="ctl07_ctl04_root" class="nav navbar-nav">		
-		
-		<c:choose>		
-			<c:when test="${active eq 'id_li_1'}">
-				<li id = "id_li_1" class="active"><a href="http://1contact.vn/meg/index.jsp">Trang chủ</a></li>	 
-			</c:when>
-			<c:otherwise>   
-			     <li id = "id_li_1" class=""><a href="http://1contact.vn/meg/index.jsp">Trang chủ</a></li>
-	   		</c:otherwise>
-		</c:choose>
-		
-		<c:choose>		
-			<c:when test="${active eq 'id_li_2'}">
-				<li id = "id_li_2" class="active"><a href="${contextPath}/intro.html">Giới thiệu</a></li>
-			</c:when>
-			<c:otherwise>   
-			     <li id = "id_li_2" class=""><a href="${contextPath}/intro.html">Giới thiệu</a></li>
-	   		</c:otherwise>
-		</c:choose>
-		
-		<c:choose>		
-			<c:when test="${active eq 'id_li_3'}">
-			 	<li id = "id_li_3" class="active"><a href="${contextPath}/promos-1-0.html">Khuyến mại v&#224; tin tức</a></li>
-			</c:when>
-			<c:otherwise>   
-			    <li id = "id_li_3" class=""><a href="${contextPath}/promos-1-0.html">Khuyến mại v&#224; tin tức</a></li>
-	   		</c:otherwise>
-		</c:choose>
-		
-		<c:choose>		
-			<c:when test="${active eq 'id_li_4'}">
-				<li id = "id_li_4" class="active"><a href="${contextPath}/guide.html">Hướng dẫn sử dụng</a></li> 
-			</c:when>
-			<c:otherwise>   
-			     <li id = "id_li_4" class=""><a href="${contextPath}/guide.html">Hướng dẫn sử dụng</a></li>
-	   		</c:otherwise>
-		</c:choose>	   
-		
-		
-		<c:choose>		
-			<c:when test="${active eq 'id_li_5'}">
-				<li id = "id_li_5" class="active"><a href="${contextPath}/contact.html">Li&#234;n hệ</a></li> 
-			</c:when>
-			<c:otherwise>   
-			     <li id = "id_li_5" class=""><a href="${contextPath}/contact.html">Li&#234;n hệ</a></li>
-	   		</c:otherwise>
-		</c:choose>
+<div class="jumbotron" id="banner"
+	style="background: url('http://1contact.vn/meg/style/css/mobile/images/logo.png'); height: 70px;">
+</div>
+<div class="row col-md-13" id="menuTop">
+	<ul class="nav nav-tabs">
+		<li class=""><a href="#"> Trang chủ</a></li>
+		<li class="dropdown"><a class="dropdown-toggle"
+			data-toggle="dropdown" href="#"> Quản lý thoại <span
+				class="caret"></span></a>
+			<ul class="dropdown-menu">
+				<li class="dropdown-submenu"><a tabindex="-1" href="#">Thoại
+						hội nghị</span>
+				</a>
+					<ul class="dropdown-menu">
+						<li><a href="#">Khởi tạo</a></li>
+						<li><a href="#">Lịch sử thoại hội nghị</a></li>
+						<li><a href="#">Quản lý nhóm</a></li>
+					</ul></li>
+				<li>
+				<li class="dropdown-submenu"><a tabindex="-1" href="#">Danh
+						bạ</a>
+					<ul class="dropdown-menu">
+						<li><a href="#">Nhân viên</a></li>
+						<li><a href="#">Khách hàng</a></li>
+					</ul></li>
+				<li><a href="#">Nhật ký cuộc gọi</a></li>
+			</ul></li>
+		<li class="dropdown"><a class="dropdown-toggle"
+			data-toggle="dropdown" href="#"> Quản lý khách hàng<span
+				class="caret"></span></a>
+			<ul class="dropdown-menu">
+				<li><a href="#">Quản lý khách hàng</a></li>
+				<li><a href="#">Quản lý người liên hệ</a></li>
+
+			</ul></li>
+		<li class="dropdown"><a class="dropdown-toggle"
+			data-toggle="dropdown" href="#">Cài đặt<span class="caret"></span></a>
+			<ul class="dropdown-menu">
+				<li><a href="#">Thông tin cá nhân</a></li>
+				<li><a href="#">Cài mật khẩu</a></li>
+				<li><a href="#">Danh sách đen</a></li>
+				<li><a href="#">Chuyển tiếp cuộc gọi</a></li>
+			</ul></li>
+		<li class=""><a href="#">Thoát</a></li>
 	</ul>
 </div>

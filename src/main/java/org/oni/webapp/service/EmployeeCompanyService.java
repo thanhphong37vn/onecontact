@@ -15,4 +15,5 @@ public interface EmployeeCompanyService {
 			String employeeNo, String mobilePhone, String companyMobile,
 			String companyName);
 
+	public List<EmployeeCompanyBean> getResultListAll();
 }

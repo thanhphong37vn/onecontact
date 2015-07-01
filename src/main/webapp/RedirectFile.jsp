@@ -3,6 +3,6 @@
 <html>
 <head><title>One contact</title></head>
 <body>
-	<c:redirect url="/intro.html"></c:redirect>
+	<c:redirect url="/login_meg.html"></c:redirect>
 </body>
 </html>

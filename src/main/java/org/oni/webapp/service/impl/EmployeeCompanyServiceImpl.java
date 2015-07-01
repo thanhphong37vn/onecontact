@@ -20,7 +20,6 @@ public class EmployeeCompanyServiceImpl implements EmployeeCompanyService {
 	@Autowired
 	private EmployeeCompanyBeanDao ecbDao;
 
-
 	@Override
 	public List<EmployeeCompanyBean> getResultList(String employeeName,
 			String employeeNo, String mobilePhone, String companyMobile,
@@ -29,4 +28,8 @@ public class EmployeeCompanyServiceImpl implements EmployeeCompanyService {
 				companyMobile, companyName);
 	}
 
+	@Override
+	public List<EmployeeCompanyBean> getResultListAll() {
+		return ecbDao.getResultListAll();
+	}
 }

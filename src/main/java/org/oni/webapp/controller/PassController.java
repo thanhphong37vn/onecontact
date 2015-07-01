@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.hibernate.SessionFactory;
 import org.hibernate.classic.Session;
 import org.oni.webapp.bean.EmployeeCompanyBean;
@@ -21,6 +20,7 @@ import org.oni.webapp.form.NewsForm;
 import org.oni.webapp.service.EmployeeCompanyService;
 import org.oni.webapp.service.NewsService;
 import org.oni.webapp.service.TagService;
+import org.oni.webapp.utils.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -60,16 +60,13 @@ public class PassController extends AbstractController {
 	@RequestMapping(value = "search", method = RequestMethod.GET)
 	public String list(EmployeeCompanyForm formEcmp, ModelMap modelMap) {
 
-
-//		 EmployeeCompanyBeanImpl beanImpl = new EmployeeCompanyBeanImpl();
-		List<EmployeeCompanyBean> list = getResultListAll();
-//		 List<EmployeeCompanyBean> list = beanImpl.getResultList(employeeName,
-//		 employeeNo, mobilePhone, companyMobile, companyName);
+		// EmployeeCompanyBeanImpl beanImpl = new EmployeeCompanyBeanImpl();
+		// List<EmployeeCompanyBean> list = beanImpl.getResultListAll();
+		List<EmployeeCompanyBean> list = ecpService.getResultListAll();
+		// List<EmployeeCompanyBean> list = beanImpl.getResultList(employeeName,
+		// employeeNo, mobilePhone, companyMobile, companyName);
 		int size = list.size();
 		System.out.println("So luong record:" + size);
-
-		ListDto<EmployeeCompanyBean> listDto = new ListDto<EmployeeCompanyBean>(
-				list, size);
 		formEcmp.setCommand("search");
 		modelMap.addAttribute("listDto", list);
 		System.out.println("Redirect sang pass Page");
@@ -77,6 +74,7 @@ public class PassController extends AbstractController {
 
 	}
 
+	@SuppressWarnings("deprecation")
 	public List<EmployeeCompanyBean> getResultListAll() {
 		Session session = sessionFactory.openSession();
 		Connection connection = session.connection();
@@ -110,12 +108,22 @@ public class PassController extends AbstractController {
 					// private String mobilePhone;
 					ecb.setMobilePhone(rs.getString("MOBILE_PHONE"));
 					// private Date setRegDateEmp;
-					// ecb.setRegDateEmp(rs.getDate("E.REG_DATE"));
+					// 2014-11-18
+					// System.out.println("employee" + rs.getDate("REG_DATE"));
+					if (rs.getDate("REG_DATE") != null) {
+						ecb.setRegDateEmp(DateUtil.convertStringToDate(rs
+								.getDate("REG_DATE").toString()));
+					}
 					// private Date setUnregDateEmp;
-					// ecb.setUnregDateEmp(rs.getDate("E.UNREG_DATE"));
+					if (rs.getDate("UNREG_DATE") != null) {
+						ecb.setUnregDateEmp(DateUtil.convertStringToDate(rs
+								.getDate("UNREG_DATE").toString()));
+					}
+
 					// /**
 					// * Company
 					// */
+
 					// private BigDecimal companyId;
 					ecb.setAddress(rs.getString("ADDRESS"));
 					// private String setAddress;
@@ -127,8 +135,8 @@ public class PassController extends AbstractController {
 					// private String setCompanyPwd;
 					ecb.setCompanyPwd(rs.getString("COMPANY_PWD"));
 					// private int setCompanyStatus;
-					 ecb.setEmployeeStatus(Integer.parseInt(rs
-					 .getLong("COMPANY_STATUS") + ""));
+					ecb.setEmployeeStatus(Integer.parseInt(rs
+							.getLong("COMPANY_STATUS") + ""));
 					// private String setContactMobile;
 					ecb.setContactMobile(rs.getString("CONTACT_MOBILE"));
 					// private String setContactName;
@@ -136,9 +144,15 @@ public class PassController extends AbstractController {
 					// private String setContactPhone;
 					ecb.setContactPhone(rs.getString("CONTACT_PHONE"));
 					// private Date setRegDateComp;
-					// ecb.setRegDateComp(rs.getDate("C.REG_DATE"));
+					if (rs.getDate("REG_DATE") != null) {
+						ecb.setRegDateComp(DateUtil.convertStringToDate(rs
+								.getDate("REG_DATE").toString()));
+					}
 					// private Date setUnregDateComp;
-					// ecb.setUnregDateComp(rs.getDate("C.UNREG_DATE"));
+					if (rs.getDate("UNREG_DATE") != null) {
+						ecb.setUnregDateComp(DateUtil.convertStringToDate(rs
+								.getDate("UNREG_DATE").toString()));
+					}
 					list.add(ecb);
 				}
 			}

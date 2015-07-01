@@ -11,6 +11,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.classic.Session;
 import org.oni.webapp.bean.EmployeeCompanyBean;
 import org.oni.webapp.dao.EmployeeCompanyBeanDao;
+import org.oni.webapp.utils.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -129,19 +130,23 @@ public class EmployeeCompanyBeanImpl implements EmployeeCompanyBeanDao {
 
 	@SuppressWarnings("deprecation")
 	public List<EmployeeCompanyBean> getResultListAll() {
-		Session session = sessionFactory.getCurrentSession();
+		Session session = sessionFactory.openSession();
 		Connection connection = session.connection();
+
 		List<EmployeeCompanyBean> list = new ArrayList<EmployeeCompanyBean>();
 		PreparedStatement prpStm = null;
 		ResultSet rs = null;
 		StringBuilder qBuilder = new StringBuilder();
 		try {
+			System.out.println("Trang thai dong connection : "
+					+ connection.isClosed());
 			qBuilder.append("select * from TAB_XN_EMPLOYEE E inner join TAB_XN_COMPANY C on C.COMPANY_ID= E.COMPANY_ID");
 			// TODO Auto-generated method stub
 			prpStm = connection.prepareStatement(qBuilder.toString());
 			System.out.println(qBuilder.toString());
 
 			rs = prpStm.executeQuery();
+
 			if (rs != null) {
 				while (rs.next()) {
 					EmployeeCompanyBean ecb = new EmployeeCompanyBean();
@@ -150,19 +155,29 @@ public class EmployeeCompanyBeanImpl implements EmployeeCompanyBeanDao {
 					// private String setEmployeeNo;
 					ecb.setEmployeeNo(rs.getString("EMPLOYEE_NO"));
 					// private String setEmployeePwd;
-					ecb.setCompanyPwd(rs.getString("EMPLOYEE_PWD"));
+					ecb.setEmployeePwd(rs.getString("EMPLOYEE_PWD"));
 					// private int employeeStatus;
 					ecb.setEmployeeStatus(Integer.parseInt(rs
 							.getLong("EMPLOYEE_STATUS") + ""));
 					// private String mobilePhone;
-					ecb.setContactMobile(rs.getString("MOBILE_PHONE"));
+					ecb.setMobilePhone(rs.getString("MOBILE_PHONE"));
 					// private Date setRegDateEmp;
-					ecb.setRegDateEmp(rs.getDate("E.REG_DATE"));
+					// 2014-11-18
+					// System.out.println("employee" + rs.getDate("REG_DATE"));
+					if (rs.getDate("REG_DATE") != null) {
+						ecb.setRegDateEmp(DateUtil.convertStringToDate(rs
+								.getDate("REG_DATE").toString()));
+					}
 					// private Date setUnregDateEmp;
-					ecb.setUnregDateEmp(rs.getDate("E.UNREG_DATE"));
+					if (rs.getDate("UNREG_DATE") != null) {
+						ecb.setUnregDateEmp(DateUtil.convertStringToDate(rs
+								.getDate("UNREG_DATE").toString()));
+					}
+
 					// /**
 					// * Company
 					// */
+
 					// private BigDecimal companyId;
 					ecb.setAddress(rs.getString("ADDRESS"));
 					// private String setAddress;
@@ -183,9 +198,15 @@ public class EmployeeCompanyBeanImpl implements EmployeeCompanyBeanDao {
 					// private String setContactPhone;
 					ecb.setContactPhone(rs.getString("CONTACT_PHONE"));
 					// private Date setRegDateComp;
-					ecb.setRegDateComp(rs.getDate("C.REG_DATE"));
+					if (rs.getDate("REG_DATE") != null) {
+						ecb.setRegDateComp(DateUtil.convertStringToDate(rs
+								.getDate("REG_DATE").toString()));
+					}
 					// private Date setUnregDateComp;
-					ecb.setUnregDateComp(rs.getDate("C.UNREG_DATE"));
+					if (rs.getDate("UNREG_DATE") != null) {
+						ecb.setUnregDateComp(DateUtil.convertStringToDate(rs
+								.getDate("UNREG_DATE").toString()));
+					}
 					list.add(ecb);
 				}
 			}
@@ -202,6 +223,9 @@ public class EmployeeCompanyBeanImpl implements EmployeeCompanyBeanDao {
 				}
 				if (connection != null) {
 					connection.close();
+				}
+				if (session != null) {
+					session.close();
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();

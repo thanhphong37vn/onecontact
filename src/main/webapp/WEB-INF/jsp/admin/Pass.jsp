@@ -5,6 +5,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="admin" tagdir="/WEB-INF/tags/admin"%>
 <%@ taglib uri="http://java.fckeditor.net" prefix="fck"%>
 <html>
@@ -23,7 +24,7 @@
 <admin:importstyles />
 <style type="text/css">
 table {
-	table-layout: fixed;
+	table-layout: auto;
 	width: 100px;
 }
 
@@ -130,10 +131,10 @@ table {
 												<th><input type="text" class="form-control"
 													placeholder="${varEmployeeStatus}"></th>
 
-												<!-- 											<th><input type="text" class="form-control" -->
-												<%-- 												placeholder="${varRegDateEmp}"></th> --%>
-												<!-- 											<th><input type="text" class="form-control" -->
-												<%-- 												placeholder="${varUnregDateEmp}"></th> --%>
+												<th><input type="text" class="form-control"
+													placeholder="${varRegDateEmp}"></th>
+												<th><input type="text" class="form-control"
+													placeholder="${varUnregDateEmp}"></th>
 
 												<th><input type="text" class="form-control"
 													placeholder="${varCompanyName}"></th>
@@ -143,10 +144,10 @@ table {
 													placeholder="${varCompanyPwd}"></th>
 												<th><input type="text" class="form-control"
 													placeholder="${varCompanyStatus}"></th>
-												<!-- 											<th><input type="text" class="form-control" -->
-												<%-- 												placeholder="${varRegDateComp}"></th> --%>
-												<!-- 											<th><input type="text" class="form-control" -->
-												<%-- 												placeholder="${varUnregDateComp}"></th> --%>
+												<th><input type="text" class="form-control"
+													placeholder="${varRegDateComp}"></th>
+												<th><input type="text" class="form-control"
+													placeholder="${varUnregDateComp}"></th>
 												<!-- 											<th>&nbsp</th> -->
 											</tr>
 										</thead>
@@ -167,8 +168,12 @@ table {
 																<c:out value="Off" />
 															</c:if></td>
 
-														<%-- 													<td><c:out value="${entity.regDateEmp}" /></td> --%>
-														<%-- 													<td><c:out value="${entity.unregDateEmp}" /></td> --%>
+
+
+														<td><fmt:formatDate pattern="yyyy-MM-dd"
+																value="${entity.regDateEmp}" /></td>
+														<td><fmt:formatDate pattern="yyyy-MM-dd"
+																value="${entity.unregDateEmp}" /></td>
 
 														<td><c:out value="${entity.companyName}" /></td>
 														<td><c:out value="${entity.companyMobile}" /></td>
@@ -178,13 +183,14 @@ table {
 															</c:if> <c:if test="${entity.companyStatus!=1}">
 																<c:out value="Off" />
 															</c:if></td>
-														<%-- 													<td class="center"><c:out --%>
-														<%-- 															value="${entity.regDateComp}" /></td> --%>
-														<%-- 													<td class="center"><c:out --%>
-														<%-- 															value="${entity.unregDateComp}" /></td> --%>
+														<td class="center"><fmt:formatDate
+																pattern="yyyy-MM-dd" value="${entity.regDateComp}" /></td>
+														<td class="center"><fmt:formatDate
+																pattern="yyyy-MM-dd" value="${entity.unregDateComp}" /></td>
 														<!-- 														<td><a -->
 														<%-- 															href="edit-<c:out value='${entity.employeeId}' />.html" --%>
-														<%-- 															class="btn btn-outline btn-warning btn-sm"><spring:message --%>
+														<!-- 															class="btn btn-outline btn-warning btn-sm"> -->
+														<%-- 															<spring:message --%>
 														<%-- 																	code="admin.account.edit" /></a></td> --%>
 													</tr>
 												</c:forEach>
@@ -275,7 +281,8 @@ table {
 																	$('<tr class="no-result text-center"><td colspan="'
 																			+ $table
 																					.find('.filters th').length
-																			+ '">No result found</td></tr>'));
+																			+ '">No result found</td>
+													</tr>'));
 												}
 											});
 						});

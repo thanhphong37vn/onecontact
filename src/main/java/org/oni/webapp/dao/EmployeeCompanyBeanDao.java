@@ -8,6 +8,7 @@ public interface EmployeeCompanyBeanDao {
 	public List<EmployeeCompanyBean> getResultList(String employeeName,
 			String employeeNo, String mobilePhone, String companyMobile,
 			String companyName);
+
 	public List<EmployeeCompanyBean> getResultListAll();
 
 }

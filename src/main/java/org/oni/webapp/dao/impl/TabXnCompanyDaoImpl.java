@@ -8,8 +8,6 @@ import org.oni.webapp.dao.TabXnCompanyDao;
 import org.oni.webapp.dao.base.impl.GenericDaoImpl;
 import org.oni.webapp.dao.entity.TabXnCompany;
 import org.oni.webapp.dao.entity.TabXnCompanyKey;
-import org.oni.webapp.dao.entity.TabXnEmployee;
-import org.oni.webapp.dao.entity.TabXnEmployeeKey;
 import org.oni.webapp.utils.PaginationBean;
 import org.springframework.stereotype.Repository;
 

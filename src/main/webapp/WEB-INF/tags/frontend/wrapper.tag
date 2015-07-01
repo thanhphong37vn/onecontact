@@ -15,8 +15,7 @@
 	<fe:importheader></fe:importheader>		
 </head>
 <body>
-    <div class="boxed" >    
-    <div id="ctl07_ContentPane" style="width: 100%"><div></div></div>
+    <div class="container">
 	    
 	    <!-- Add header -->			
 		<fe:Header></fe:Header>	
@@ -29,6 +28,6 @@
     </div>
 
 	<!-- More script-->
-   	<fe:ScriptPlus></fe:ScriptPlus>
+<%--    	<fe:ScriptPlus></fe:ScriptPlus> --%>
 </body>
 </html>
